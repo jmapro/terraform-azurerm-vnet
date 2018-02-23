@@ -99,7 +99,7 @@ module "vnet" {
 
 resource "azurerm_route_table" "rt-subnet1" {
   depends_on          = ["module.vnet"]
-  name                = "rt-subnet1
+  name                = "rt-subnet1"
   location            = "westus"
   resource_group_name = "${var.resource_group_name}"
 }
@@ -115,7 +115,7 @@ resource "azurerm_route" "subnet1_default_gw" {
 
 resource "azurerm_route_table" "rt-subnet2" {
   depends_on          = ["module.vnet"]
-  name                = "rt-subnet2
+  name                = "rt-subnet2"
   location            = "westus"
   resource_group_name = "${var.resource_group_name}"
 }
@@ -131,7 +131,7 @@ resource "azurerm_route" "subnet2_default_gw" {
 
 resource "azurerm_route_table" "rt-subnet3" {
   depends_on          = ["module.vnet"]
-  name                = "rt-subnet3
+  name                = "rt-subnet3"
   location            = "westus"
   resource_group_name = "${var.resource_group_name}"
 }
