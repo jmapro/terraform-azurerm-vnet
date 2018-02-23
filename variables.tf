@@ -44,6 +44,12 @@ variable "nsg_ids" {
   }
 }
 
+variable "route_tables_ids" {
+  description = "A list of Route tables IDS."
+  type        = "list"
+  default     = [""]
+}
+
 variable "tags" {
   description = "The tags to associate with your network and subnets."
   type        = "map"
