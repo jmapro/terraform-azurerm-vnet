@@ -77,7 +77,7 @@ resource "azurerm_network_security_group" "ssh" {
 }
 ```
 
-Example adding a network security rule for SSH:
+Example adding a route table:
 -----------------------------------------------
 ```hcl
 variable "resource_group_name" { }
@@ -89,7 +89,7 @@ module "vnet" {
   address_space       = "10.0.0.0/16"
   subnet_prefixes     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   subnet_names        = ["subnet1", "subnet2", "subnet3"]
-  route_tables_ids    = ["azurerm_route_table.rt-subnet1.id", "azurerm_route_table.rt-subnet2.id", "azurerm_route_table.rt-subnet3.id"]
+  route_tables_ids    = ["${azurerm_route_table.rt-subnet1.id}", "${azurerm_route_table.rt-subnet2.id}", "${azurerm_route_table.rt-subnet3.id}"]
 
   tags = {
     environment = "dev"
