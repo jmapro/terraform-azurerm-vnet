@@ -1,11 +1,11 @@
 module "network" {
   source              = "../../../"
   resource_group_name = "${random_id.rg_name.hex}"
-  location            = "eastus"
+  location            = "${var.location}"
   address_space       = "10.0.0.0/16"
   subnet_prefixes     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   subnet_names        = ["subnet1", "subnet2", "subnet3"]
-  route_tables_ids    = ["${azurerm_route_table.rt-subnet1.id}", "${azurerm_route_table.rt-subnet2.id}", "${azurerm_route_table.rt-subnet3.id}"]
+  route_tables_ids    = ["${lower(azurerm_route_table.rt-subnet1.id)}", "${lower(azurerm_route_table.rt-subnet2.id)}", "${lower(azurerm_route_table.rt-subnet3.id)}"]
 
   nsg_ids = {
     subnet1 = "${azurerm_network_security_group.nsg1.id}"
@@ -24,7 +24,7 @@ resource "random_id" "rg_name" {
 //Create a resource group and nsg to use for testing nsg association.
 resource "azurerm_resource_group" "myapp2" {
   name     = "${random_id.rg_name.hex}"
-  location = "eastus"
+  location = "${var.location}"
 }
 
 resource "azurerm_network_security_group" "nsg1" {
@@ -35,7 +35,7 @@ resource "azurerm_network_security_group" "nsg1" {
 
 resource "azurerm_route_table" "rt-subnet1" {
   name                = "rt-subnet1"
-  location            = "westus"
+  location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.myapp2.name}"
 }
 
@@ -50,7 +50,7 @@ resource "azurerm_route" "subnet1_default_gw" {
 
 resource "azurerm_route_table" "rt-subnet2" {
   name                = "rt-subnet2"
-  location            = "westus"
+  location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.myapp2.name}"
 }
 
@@ -65,7 +65,7 @@ resource "azurerm_route" "subnet2_default_gw" {
 
 resource "azurerm_route_table" "rt-subnet3" {
   name                = "rt-subnet3"
-  location            = "westus"
+  location            = "${var.location}"
   resource_group_name = "${azurerm_resource_group.myapp2.name}"
 }
 
