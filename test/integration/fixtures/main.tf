@@ -37,12 +37,12 @@ resource "azurerm_route_table" "rt-subnet1" {
   depends_on          = ["module.network"]
   name                = "rt-subnet1"
   location            = "westus"
-  resource_group_name = "${var.resource_group_name}"
+  resource_group_name = "${azurerm_resource_group.myapp2.name}"
 }
 
 resource "azurerm_route" "subnet1_default_gw" {
   name                   = "subnet1_default_gw"
-  resource_group_name    = "${var.resource_group_name}"
+  resource_group_name    = "${azurerm_resource_group.myapp2.name}"
   route_table_name       = "${azurerm_route_table.rt-subnet1.name}"
   address_prefix         = "0.0.0.0/0"
   next_hop_type          = "VirtualAppliance"
@@ -53,12 +53,12 @@ resource "azurerm_route_table" "rt-subnet2" {
   depends_on          = ["module.network"]
   name                = "rt-subnet2"
   location            = "westus"
-  resource_group_name = "${var.resource_group_name}"
+  resource_group_name = "${azurerm_resource_group.myapp2.name}"
 }
 
 resource "azurerm_route" "subnet2_default_gw" {
   name                   = "subnet2_default_gw"
-  resource_group_name    = "${var.resource_group_name}"
+  resource_group_name    = "${azurerm_resource_group.myapp2.name}"
   route_table_name       = "${azurerm_route_table.rt-subnet2.name}"
   address_prefix         = "0.0.0.0/0"
   next_hop_type          = "VirtualAppliance"
@@ -69,12 +69,12 @@ resource "azurerm_route_table" "rt-subnet3" {
   depends_on          = ["module.network"]
   name                = "rt-subnet3"
   location            = "westus"
-  resource_group_name = "${var.resource_group_name}"
+  resource_group_name = "${azurerm_resource_group.myapp2.name}"
 }
 
 resource "azurerm_route" "subnet3_default_gw" {
   name                   = "subnet3_default_gw"
-  resource_group_name    = "${var.resource_group_name}"
+  resource_group_name    = "${azurerm_resource_group.myapp2.name}"
   route_table_name       = "${azurerm_route_table.rt-subnet3.name}"
   address_prefix         = "0.0.0.0/0"
   next_hop_type          = "VirtualAppliance"
